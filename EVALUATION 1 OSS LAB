@@ -1,0 +1,63 @@
+ QUESTION 1
+Write a Python script that takes input from the user and displays the UNIQUE 
+upper and lower cases characters present in input string separately. 
+
+def display_unique_chars(s):
+   
+    unique_uppercase = set()
+    unique_lowercase = set()
+    
+
+    for char in s:
+        
+        if char.isupper():
+            unique_uppercase.add(char)
+        
+        elif char.islower():
+            unique_lowercase.add(char)
+    
+    
+    sorted_uppercase = sorted(unique_uppercase)
+    sorted_lowercase = sorted(unique_lowercase)
+    
+  
+    print("Unique Uppercase Characters:", ''.join(sorted_uppercase))
+    print("Unique Lowercase Characters:", ''.join(sorted_lowercase))
+
+
+user_input = input("Enter a string: ")
+
+
+display_unique_chars(user_input)
+
+
+QUESTION 2 
+Write a Python program to find the most repeated word and letter in a given 
+string
+from collections import Counter
+import re
+
+def find_most_repeated(text):
+   
+    text = text.lower()
+
+    
+    words = re.findall(r'\b\w+\b', text)  
+    letters = re.findall(r'[a-z]', text)   
+
+   
+    word_counts = Counter(words)
+    letter_counts = Counter(letters)
+
+ 
+    most_common_word, word_count = word_counts.most_common(1)[0] if word_counts else (None, 0)
+    most_common_letter, letter_count = letter_counts.most_common(1)[0] if letter_counts else (None, 0)
+
+   
+    print(f"The most repeated word is: '{most_common_word}' with {word_count} occurrences.")
+    print(f"The most repeated letter is: '{most_common_letter}' with {letter_count} occurrences.")
+
+
+if __name__ == "__main__":
+    user_input = input("Enter a string: ")
+    find_most_repeated(user_input)
